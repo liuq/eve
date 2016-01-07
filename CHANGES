@@ -6,18 +6,30 @@ Here you can see the full list of changes between each Eve release.
 In Development
 --------------
 
-Version 0.6.2
-~~~~~~~~~~~~~
+Version 0.7
+~~~~~~~~~~~
 
 - New: Query parameters not recognised by Eve are now returned in HATEOAS URLs
   (Mugur Rus).
 - New: ``OPLOG_CHANGE_METHODS`` is a list of HTTP methods which operations will
   include changes into the OpLog (mmizotin).
 
-- Fix: Serialize inside *of and *of_type rules new in Cerberus 0.9. Closes #692
+- Change: ETag response header now conforms to RFC 7232/2.3 and is surrounded by
+  double quotes. Please note that this might break client code as previously
+  we were not returning double quotes sorrounded ETag headers. Closes #794.
+
+- Fix: ETag request headers which conform to RFC 7232/2.3 (double quoted value)
+  are now properly processed. Also addresses #794.
+
+
+Version 0.6.2
+~~~~~~~~~~~~~
+
+- Fix: Serialize inside ``of`` and ``of_type`` rules new in Cerberus 0.9. Closes #692
   (Arnau Orriols).
 - Fix: In ``patch_internal`` Validator is not se twhen ``skip_validation`` is
   ``true`` (Stratos Gerakakis).
+- Fix: Add missing serializer for fields of type ``number`` (Arnau Orriols).
 - Fix: Skip any null value from serialization (Arnau Orriols).
 - Fix: When ``SOFT_DELETE`` is active an exclusive ``datasource.projection``
   causes a ``500`` error. Closes #752.
@@ -25,7 +37,7 @@ Version 0.6.2
 - Update: PyMongo 3.1 is now required.
 - Update: Flask-PyMongo 0.4+ is now required.
 
-- Docs: fix some typos (Manquer).
+- Docs: fix some typos (Manquer, Patrick Decat).
 
 
 Stable
